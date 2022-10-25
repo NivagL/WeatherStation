@@ -8,6 +8,7 @@ public static class WeatherForecastServiceFactory
         {
             var loggerFactory = provider.GetRequiredService<ILoggerFactory>();
             var logger = loggerFactory.CreateLogger<WeatherForecastService>();
+            //Do your DI stuff here
             return new WeatherForecastService(logger);
         });
         return services;

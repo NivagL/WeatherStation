@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//Register your service types
 builder.Services.AddWeatherForecastService();
 
 var app = builder.Build();
@@ -21,6 +23,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapGet("/weatherforecast", () => {
+    //Just get the top level service, and amp to the function, let the factory do the rest
     var service = app.Services.GetRequiredService<IWeatherForecastService>();
     return service.Get();
     })
